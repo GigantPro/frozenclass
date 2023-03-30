@@ -1,6 +1,5 @@
 import inspect
 from typing import Any, Callable
-from copy import deepcopy
 
 from ..exceptions import Novariable
 
@@ -21,7 +20,7 @@ class TypesModule:
             if class_name == type_:
                 return class_obj(value)
         return value
-    
+
     def get_type_by_name(type_name: str) -> Any | None:
         for class_name, class_obj in globals().items():
             if class_name == type_name:
@@ -32,21 +31,19 @@ class TypesModule:
         init_args = inspect.getfullargspec(class_.__init__)
         init_args.args.remove('self')
 
-        _vars = deepcopy(vars)
-        print(_vars)
         vars_to_init = {}
         for var in init_args.args:
-            if var not in _vars:
+            if var not in vars:
                 raise Novariable(var)
-            vars_to_init[var] = _vars[var]
-            _vars.pop(var)
+            vars_to_init[var] = vars[var]
+            vars.pop(var)
         res_class = class_(**vars_to_init)
 
-        for var in _vars:
-            setattr(res_class, var, _vars[var])
-        
+        for var in vars:
+            setattr(res_class, var, vars[var])
+
         return res_class
-    
+
     def generate_class_by_info(info: dict) -> Any:
         new_type = type(info['type']['saved_class'], (object,), info['var'])
         setattr(new_type, '__name__', info['SavedModel']['save_name'])

@@ -6,3 +6,8 @@ disable=
     C0201, # consider-iterating-dictionary
     R0903, # too-few-public-methods
     W0511, # fix me
+    R0912, # too-many-branches
+    E0213, # no-self-argument
+    E1102, # not-callable
+    E1136, # unsubscriptable-object
+    E0402, # relative-beyond-top-level

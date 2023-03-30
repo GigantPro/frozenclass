@@ -9,14 +9,14 @@ from setuptools import setup
 :copyright: (c) 2023 Xiver organization
 """
 
-version = '0.0.2a'
+VERSION = '0.0.2a'
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
     name='pysavedata',
-    version=version,
+    version=VERSION,
 
     author='GigantPro',
     author_email='gigantpro2000@gmail.ru',
