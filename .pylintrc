@@ -11,3 +11,5 @@ disable=
     E1102, # not-callable
     E1136, # unsubscriptable-object
     E0402, # relative-beyond-top-level
+    W0622, # redefined-builtin
+    W0105, # pointless-string-statement

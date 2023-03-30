@@ -1,5 +1,6 @@
 import inspect
 from typing import Any, Callable
+from copy import deepcopy
 
 from ..exceptions import Novariable
 
@@ -31,16 +32,18 @@ class TypesModule:
         init_args = inspect.getfullargspec(class_.__init__)
         init_args.args.remove('self')
 
+        _vars = deepcopy(vars)
+        print(_vars)
         vars_to_init = {}
         for var in init_args.args:
-            if var not in vars:
+            if var not in _vars:
                 raise Novariable(var)
-            vars_to_init[var] = vars[var]
-            vars.pop(var)
+            vars_to_init[var] = _vars[var]
+            _vars.pop(var)
         res_class = class_(**vars_to_init)
 
-        for var in vars:
-            setattr(res_class, var, vars[var])
+        for var in _vars:
+            setattr(res_class, var, _vars[var])
 
         return res_class
 

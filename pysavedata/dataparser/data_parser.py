@@ -6,7 +6,7 @@ from .types_modul import TypesModule
 class DataParser:
     def __init__(self, filename: str) -> None:
         self.filename = filename
-        
+
         self.saved_data = {}
         self._class = None
 
@@ -21,7 +21,10 @@ class DataParser:
         for line in file_content:
             if line[0] + line[-1] == '[]':
                 if now_name and (var_type and var_name and var_val):
-                    self.saved_data['var'][var_name] = TypesModule.get_value_by_type(var_val, var_type)
+                    self.saved_data['var'][var_name] = TypesModule.get_value_by_type(
+                                                                        var_val,
+                                                                        var_type
+                                                                    )
                     var_val = var_type = var_name = None
 
                 now_name = line[1:-1]
