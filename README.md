@@ -32,5 +32,5 @@ Dependencies:
 ```bash
 $ git clone https://github.com/GigantPro/pysavedata.git
 $ poetry run build_pkg
-$ pip install "dist/npeg-0.0.1-py3-none-any.whl"
+$ pip install "dist/pysavedata-0.0.2a0.tar"
 ```
