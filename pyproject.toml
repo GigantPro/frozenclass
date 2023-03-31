@@ -21,3 +21,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 build = "scripts.build:build"
 public = "scripts.public:public"
+testing = "pysavedata.tests.__init__:start_testing"
