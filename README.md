@@ -31,6 +31,6 @@ Dependencies:
 - poetry
 ```bash
 $ git clone https://github.com/GigantPro/pysavedata.git
-$ poetry run build_pkg
+$ poetry run build
 $ pip install "dist/pysavedata-0.0.2a0.tar"
 ```
