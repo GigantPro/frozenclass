@@ -46,7 +46,7 @@ def check_res(res: list, config: dict) -> bool:
         if class_.__name__ != config['save_name']:
             return False
 
-        if parse_name(class_) != config['saved_class']:
+        if _parse_name(class_) != config['saved_class']:
             return False
 
         for var in config['vars']:
@@ -56,5 +56,5 @@ def check_res(res: list, config: dict) -> bool:
 
     return True
 
-def parse_name(class_: Any) -> str:
+def _parse_name(class_: Any) -> str:
     return str(class_).split('.')[-1].split('\'')[0]
