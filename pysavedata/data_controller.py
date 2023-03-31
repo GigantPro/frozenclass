@@ -25,7 +25,13 @@ class DataController:
     def save_class(
         self, target_class: Any, save_name: str = ...
     ) -> bool | NoReturn:  # type(...) == ellipsis
-        pass
+        if isinstance(save_name, ellipsis):
+            if hasattr(target_class, '__name__'):
+                save_name = getattr(target_class, '__name__')
+            
+            else:
+                save_name = None
+        
 
     def load_save(self, save_name: str) -> Any:
         pass

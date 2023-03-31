@@ -6,7 +6,7 @@ from ..exceptions import Novariable
 
 
 class TypesModule:
-    def get_value_by_type(value: Any, type_: str) -> Any:
+    def get_value_by_type(value: Any, type_: str) -> Any: # fix me 1
         _standart_types = {
             'int': int,
             'float': float,

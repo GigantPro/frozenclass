@@ -2,6 +2,8 @@ import random
 from string import ascii_letters
 from typing import Any
 
+from ..functions import parse_name
+
 __all__ = (
     'generate_test_file',
 )
@@ -46,7 +48,7 @@ def check_res(res: list, config: dict) -> bool:
         if class_.__name__ != config['save_name']:
             return False
 
-        if _parse_name(class_) != config['saved_class']:
+        if parse_name(class_) != config['saved_class']:
             return False
 
         for var in config['vars']:
@@ -55,6 +57,3 @@ def check_res(res: list, config: dict) -> bool:
                 return False
 
     return True
-
-def _parse_name(class_: Any) -> str:
-    return str(class_).split('.')[-1].split('\'')[0]
