@@ -14,7 +14,6 @@ class TestLoadFunc(unittest.TestCase):
             file.write(self.text)
 
     def test_load(self):
-        print(123123)
         res = self.controller.get_all_saves_list()
         self.assertTrue(check_res(res, self.args))
 
