@@ -1,1 +1,1 @@
-from .no_var import Novariable
+from .no_var import NoVar
