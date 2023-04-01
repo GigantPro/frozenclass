@@ -28,7 +28,7 @@ class DataController:
         if isinstance(save_name, type(...)):
             if hasattr(target_class, '__name__'):
                 save_name = getattr(target_class, '__name__')
-            
+
             else:
                 save_name = None
         return DataWriter(self._saves_path, save_name).freeze_class(target_class)

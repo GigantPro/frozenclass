@@ -1,6 +1,5 @@
 import random
 from string import ascii_letters
-from typing import Any
 
 from ..functions import parse_name
 

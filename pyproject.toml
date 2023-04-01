@@ -21,6 +21,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 build = "scripts.build:build"
 public = "scripts.public:public"
+linting = "scripts.pylint:start_linting"
 testing = "frozenclass.tests.__init__:start_testing"
 
 [tool.pylint]
@@ -40,4 +41,6 @@ disable = [
     "W0622",
     "W0105",
     "C0207",
+    "C2801",
+    "C0206"
 ]

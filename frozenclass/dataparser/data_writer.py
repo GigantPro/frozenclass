@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Callable
 from random import randint
 from datetime import datetime
 
@@ -10,19 +10,21 @@ class DataWriter:
     def __init__(self, saves_path: str, save_name: str | None = None) -> None:
         self.save_name = save_name
         self.saves_path = saves_path
-        
+
+        self.parsed_attributes = None
         self.class_vars = None
+        self.save_data = None
         self.class_ = None
 
-    def freeze_class(self, class_) -> bool:
+    def freeze_class(self, class_: Callable) -> bool:
         self._check_save_name(class_)
         self.class_ = class_
-        
+
         self.class_vars = class_.__dir__()
         self.parsed_attributes = self._parse_attributes()
 
         self.save_data = self._create_save_data()
-        
+
         with open(self.save_name, 'w', encoding='utf-8') as file:
             file.write(self.save_data)
         return True
