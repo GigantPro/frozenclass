@@ -1,5 +1,6 @@
 from typing import Any, NoReturn
 import os
+from shutil import copyfile
 
 from .dataparser import DataParser, DataWriter
 
@@ -20,7 +21,15 @@ class DataController:
         return classes_list
 
     def change_saves_path(self, new_path: str, copy_old: bool = False) -> None:
-        pass
+        os.makedirs(new_path, exist_ok=True)
+
+        if copy_old:
+            list_dir = os.listdir(self._saves_path)
+            for save in list_dir:
+                copyfile(f'{self._saves_path}/{save}', f'{new_path}/{save}')
+            os.system(f'rm -rf {self._saves_path}')
+
+        self._saves_path = new_path
 
     def freeze_class(
         self, target_class: Any, save_name: str = ...
