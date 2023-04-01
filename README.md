@@ -2,27 +2,35 @@
 
 
 
-# pysavedata 
+# frozenclass 
 This library was created in order to be able to save classes with a single line, as well as load them!
 
 
 
-## Examples
+## Example
 ```python 
-from pysavedata import DataController
+from frozenclass import DataController
+
+
+# Test class
+class Test:
+    pass
 
 
 # Init controller class
 data_controller = DataController('PATH_TO_SAVE`S FOLDER')
 
+# Save class as file
+data_controller.freeze_class(Test())
+
 # Get all saves classes models
-loaded_classes = data_controller.get_all_saves_list()  # -> list[classes models]
+loaded_classes = data_controller.get_all_saves_list()  # -> list[class instances]
 ```
 
 ## Installation
 
 ```bash
-$ pip install pysavedata
+$ pip install frozenclass
 ```
 
 ## Installation from source
@@ -30,7 +38,7 @@ $ pip install pysavedata
 Dependencies:
 - poetry
 ```bash
-$ git clone https://github.com/GigantPro/pysavedata.git
+$ git clone https://github.com/GigantPro/frozenclass.git
 $ poetry run build
-$ pip install "dist/pysavedata-0.0.2a0.tar"
+$ pip install "dist/frozenclass-0.0.3a0.tar"
 ```

@@ -53,4 +53,5 @@ class DataParser:
         self._class = TypesModule.get_type_by_name(self.saved_data['type']['saved_class'])
         if self._class:
             return TypesModule.create_class_with_data(self._class, self.saved_data['var'])
-        return TypesModule.generate_class_by_info(self.saved_data)
+        type_ = TypesModule.generate_class_by_info(self.saved_data)
+        return TypesModule.create_class_with_data(type_, self.saved_data['var'])

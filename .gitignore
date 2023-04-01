@@ -2,5 +2,5 @@ saves/
 test.py
 __pycache__
 dist
-pysavedata.egg-info
+frozenclass.egg-info
 *.save

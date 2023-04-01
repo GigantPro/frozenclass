@@ -7,13 +7,14 @@ from .const import VAR_TEMPLATE, GLOBAL_TEMPLATE
 
 
 class DataWriter:
-    def __init__(self, save_name: str | None = None) -> None:
+    def __init__(self, saves_path: str, save_name: str | None = None) -> None:
         self.save_name = save_name
+        self.saves_path = saves_path
         
         self.class_vars = None
         self.class_ = None
 
-    def freeze_class(self, class_) -> Any:
+    def freeze_class(self, class_) -> bool:
         self._check_save_name(class_)
         self.class_ = class_
         
@@ -24,10 +25,14 @@ class DataWriter:
         
         with open(self.save_name, 'w', encoding='utf-8') as file:
             file.write(self.save_data)
+        return True
 
     def _check_save_name(self, class_) -> None:
         if self.save_name is None:
-            self.save_name = f'saves/{parse_name(class_)}' \
+            self.save_name = f'{self.saves_path}/{parse_name(class_)}' \
+                    f'_{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save'
+        else:
+            self.save_name = f'{self.saves_path}/{self.saves_path}' \
                     f'_{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save'
 
     def _parse_attributes(self) -> dict:

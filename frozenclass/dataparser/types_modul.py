@@ -33,7 +33,6 @@ class TypesModule:
         init_args.args.remove('self')
 
         _vars = deepcopy(vars)
-        print(_vars)
         vars_to_init = {}
         for var in init_args.args:
             if var not in _vars:
@@ -49,5 +48,6 @@ class TypesModule:
 
     def generate_class_by_info(info: dict) -> Any:
         new_type = type(info['type']['saved_class'], (object,), info['var'])
-        setattr(new_type, '__name__', info['SavedModel']['save_name'])
+        if not getattr(new_type, '__name__', False):
+            setattr(new_type, '__name__', info['SavedModel']['save_name'])
         return new_type

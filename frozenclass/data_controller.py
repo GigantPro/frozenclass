@@ -1,7 +1,7 @@
 from typing import Any, NoReturn
 import os
 
-from .dataparser import DataParser
+from .dataparser import DataParser, DataWriter
 
 
 class DataController:
@@ -19,19 +19,19 @@ class DataController:
 
         return classes_list
 
-    def change_saves_path(self, new_path: str, copy_old: bool = False) -> None | NoReturn:
+    def change_saves_path(self, new_path: str, copy_old: bool = False) -> None:
         pass
 
-    def save_class(
+    def freeze_class(
         self, target_class: Any, save_name: str = ...
     ) -> bool | NoReturn:  # type(...) == ellipsis
-        if isinstance(save_name, ellipsis):
+        if isinstance(save_name, type(...)):
             if hasattr(target_class, '__name__'):
                 save_name = getattr(target_class, '__name__')
             
             else:
                 save_name = None
-        
+        return DataWriter(self._saves_path, save_name).freeze_class(target_class)
 
     def load_save(self, save_name: str) -> Any:
         pass

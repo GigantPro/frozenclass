@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "pysavedata"
-version = "0.0.1"
+name = "frozenclass"
+version = "0.0.3a"
 description = "Python module for convenient storage of classes in files."
 authors = ["GigantPro <gigantpro2000@gmail.com>"]
 license = "The GPLv3 License (GPLv3)"
@@ -21,4 +21,23 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 build = "scripts.build:build"
 public = "scripts.public:public"
-testing = "pysavedata.tests.__init__:start_testing"
+testing = "frozenclass.tests.__init__:start_testing"
+
+[tool.pylint]
+max-line-length = 120
+disable = [
+    "C0114",
+    "C0115",
+    "C0116",
+    "C0201",
+    "R0903",
+    "W0511",
+    "R0912",
+    "E0213",
+    "E1102",
+    "E1136",
+    "E0402",
+    "W0622",
+    "W0105",
+    "C0207",
+]

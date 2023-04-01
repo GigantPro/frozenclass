@@ -9,13 +9,13 @@ from setuptools import setup
 :copyright: (c) 2023 Xiver organization
 """
 
-VERSION = '0.0.2a'
+VERSION = '0.0.3a'
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='pysavedata',
+    name='frozenclass',
     version=VERSION,
 
     author='GigantPro',
@@ -27,12 +27,12 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
 
-    url='https://github.com/GigantPro/pysavedata',
+    url='https://github.com/GigantPro/frozenclass',
     download_url='https://github.com/Peopl3s/club-house-api/archive/main.zip',
 
     license='The GPLv3 License (GPLv3), see LICENSE file',
 
-    packages=['pysavedata'],
+    packages=['frozenclass'],
     install_requires=[],
 
     classifiers=[
