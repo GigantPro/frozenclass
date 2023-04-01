@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "frozenclass"
-version = "0.0.3a"
+version = "0.0.3a1"
 description = "Python module for convenient storage of classes in files."
 authors = ["GigantPro <gigantpro2000@gmail.com>"]
 license = "The GPLv3 License (GPLv3)"

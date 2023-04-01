@@ -40,10 +40,15 @@ $ pip install frozenclass
 
 ## Installation from source
 
-Dependencies:
-- poetry
+### Dependencies:
+- **poetry**
 ```bash
-$ git clone https://github.com/GigantPro/frozenclass.git
+$ git clone https://github.com/GigantPro/frozenclass.git; cd frozenclass
 $ poetry run build
-$ pip install "dist/frozenclass-0.0.3a0.tar"
+$ pip install $(ls -Art | tail -n 1)
+```
+
+## poetry install:
+```bash
+$ curl -sSL https://install.python-poetry.org | python3 -
 ```

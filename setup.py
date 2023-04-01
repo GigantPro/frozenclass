@@ -9,7 +9,7 @@ from setuptools import setup
 :copyright: (c) 2023 Xiver organization
 """
 
-VERSION = '0.0.3a'
+VERSION = '0.0.3a1'
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
