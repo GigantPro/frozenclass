@@ -1,6 +1,11 @@
 # Warning: project is unstable now. At the moment, the library has just begun to be developed, so this is not the final form of the product!
 
-
+<p align="center">
+        <a href="https://pypi.python.org/pypi/frozenclass"><img alt="Pypi version" src="https://img.shields.io/pypi/v/frozenclass.svg"></a>
+        <a href="https://pypi.python.org/pypi/frozenclass"><img alt="Python versions" src="https://img.shields.io/badge/python-3.10%2B%20%7C%20PyPy-blue.svg"></a>
+        <img alt="Size" src="https://img.shields.io/github/languages/code-size/GigantPro/frozenclass">
+        <a href="https://pypi.org/project/frozenclass/"><img alt="Pypi version" src="https://img.shields.io/pypi/l/frozenclass"></a>
+    </p>
 
 # frozenclass 
 This library was created in order to be able to save classes with a single line, as well as load them!
