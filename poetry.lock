@@ -4,7 +4,7 @@
 name = "astroid"
 version = "2.15.1"
 description = "An abstract syntax tree for Python with inference support."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7.2"
 files = [
@@ -43,7 +43,7 @@ tests-no-zope = ["cloudpickle", "cloudpickle", "hypothesis", "hypothesis", "mypy
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
@@ -55,7 +55,7 @@ files = [
 name = "dill"
 version = "0.3.6"
 description = "serialize all of python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -97,7 +97,7 @@ files = [
 name = "isort"
 version = "5.12.0"
 description = "A Python utility / library to sort Python imports."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.8.0"
 files = [
@@ -115,7 +115,7 @@ requirements-deprecated-finder = ["pip-api", "pipreqs"]
 name = "lazy-object-proxy"
 version = "1.9.0"
 description = "A fast and thorough lazy object proxy."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -161,7 +161,7 @@ files = [
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -185,7 +185,7 @@ files = [
 name = "platformdirs"
 version = "3.2.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -217,7 +217,7 @@ testing = ["pytest", "pytest-benchmark"]
 name = "pylint"
 version = "2.17.1"
 description = "python code static checker"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7.2"
 files = [
@@ -287,7 +287,7 @@ testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -299,7 +299,7 @@ files = [
 name = "tomlkit"
 version = "0.11.7"
 description = "Style preserving TOML library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -311,7 +311,7 @@ files = [
 name = "typing-extensions"
 version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -323,7 +323,7 @@ files = [
 name = "wrapt"
 version = "1.15.0"
 description = "Module for decorators, wrappers and monkey patching."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 files = [
@@ -407,4 +407,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "8efb1db53f8436e1c14a570eb46111c4afec345d0dc7f35a50d1040275826f1e"
+content-hash = "7e007c4ebeb89c4f0d8b1ab870a6ce0bc37150def141b51db910580bd85d7d72"
