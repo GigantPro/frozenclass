@@ -4,6 +4,7 @@ save_name={save_name}
 [type]
 saved_class={saved_class}
 class_path={class_path}
+class_parents={class_parents}
 """
 
 VAR_TEMPLATE = """[var]

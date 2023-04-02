@@ -1,4 +1,5 @@
 import inspect
+import json
 from typing import Any, Callable
 from copy import deepcopy
 
@@ -67,3 +68,9 @@ class TypesModule:
         if not getattr(new_type, "__name__", False):
             setattr(new_type, "__name__", info["SavedModel"]["save_name"])
         return new_type
+
+    def get_json_bases_data_by_class(self, class_: Callable) -> str:
+        s_bases = str(class_.__class__.__bases__)
+
+        bases_list = s_bases.split('\'')[1::2]
+        return json.dumps(bases_list)

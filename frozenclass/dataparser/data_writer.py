@@ -4,7 +4,7 @@ from typing import Any, Callable
 from random import randint
 from datetime import datetime
 
-from ..functions import parse_name
+from .types_modul import TypesModule
 from .const import JSON_FORMATS, VAR_TEMPLATE, GLOBAL_TEMPLATE, BANNED_VAR_NAMES
 
 
@@ -35,15 +35,12 @@ class DataWriter:
 
     def _check_save_name(self, class_) -> None:
         if self.save_name is None:
-            self.saved_path = (
-                f"{self.saves_path}/{parse_name(class_)}"
-                f"_{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save"
-            )
-        else:
-            self.saved_path = (
-                f"{self.saves_path}/{self.save_name}_"
-                f"{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save"
-            )
+            self.save_name = f'{"".join([str(randint(0, 10)) for _ in range(10)])}'
+
+        self.saved_path = (
+            f"{self.saves_path}/{self.save_name}_"
+            f"{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save"
+        )
 
     def _parse_attributes(self) -> dict:
         res = {}
@@ -65,9 +62,10 @@ class DataWriter:
 
     def _create_save_data(self) -> str:
         res = GLOBAL_TEMPLATE.format(
-            save_name=self.save_name.split("/")[-1].split(".")[0],
+            save_name=self.save_name,
             saved_class=self._parse_class_by_type(self.class_)[0],
             class_path=self._parse_class_by_type(self.class_)[1],
+            class_parents=TypesModule().get_json_bases_data_by_class(self.class_),
         )
         for attrname in self.parsed_attributes:
             res += "\n"
