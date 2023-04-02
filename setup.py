@@ -9,7 +9,8 @@ from setuptools import setup
 :copyright: (c) 2023 Xiver organization
 """
 
-VERSION = open('pyproject.toml', encoding='utf-8').read().split('=')[2].split('"')[1]
+with open('pyproject.toml', encoding='utf-8') as file:
+    VERSION = file.read().split('=')[2].split('"')[1]
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()

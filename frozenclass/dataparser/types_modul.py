@@ -32,7 +32,7 @@ class TypesModule:
             mod = None
         return mod
 
-    def create_class_instance(self, class_: Callable, vars: dict[str: Any]) -> Any:
+    def create_class_instance(self, class_: Callable, vars: dict[str: Any]) -> Any:  # Fix me переделать под наследование
         def _get_var_with_type(var_description: dict) -> tuple[str, Any]:
             type_ = self.get_type_by_saved_type(var_description)
             value = type_(var_description['var_value'])

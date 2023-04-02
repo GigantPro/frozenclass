@@ -1,8 +1,9 @@
-from typing import Any, NoReturn
+from typing import Any
 import os
 from shutil import copyfile
 
 from .dataparser import DataParser, DataWriter
+from .exceptions import NoSave
 
 
 class DataController:
@@ -56,7 +57,8 @@ Be careful, the next time you create a DataController, you will need to specify 
 
         Args:
             target_class (Any): The class to be saved
-            save_name (str, optional): The key by which it will be possible to obtain the saved class in the future. It is also displayed in the name of the file with saving. Defaults to ....
+            save_name (str, optional): The key by which it will be possible to obtain the saved class in the future.
+            It is also displayed in the name of the file with saving. Defaults to ...
 
         Returns:
             bool: Whether the class was successfully saved to a file
@@ -75,7 +77,17 @@ Be careful, the next time you create a DataController, you will need to specify 
         Args:
             save_name (str): The name of the desired save
 
+        Raises:
+            NoSave: If there is no save with the given name
+
         Returns:
             Any: The instance of the class that was saved
         """
-        pass
+        list_dir = os.listdir(self._saves_path)
+
+        for save_filename in list_dir:
+            parser = DataParser(f'{self._saves_path}/{save_filename}')
+            parsed_content = parser.parse_file_content()
+            if parsed_content['SavedModel']['save_name'] == save_name:
+                return parser.parse_file()
+        raise NoSave('save_name')

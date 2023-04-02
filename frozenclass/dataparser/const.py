@@ -25,3 +25,9 @@ STANDART_TYPES = {
     'str': str,
     'dict': dict
 }
+
+JSON_FORMATS = {
+    'list': list,
+    'dict': dict,
+    'tuple': tuple,
+}
