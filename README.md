@@ -4,8 +4,12 @@
         <a href="https://pypi.python.org/pypi/frozenclass"><img alt="Pypi version" src="https://img.shields.io/pypi/v/frozenclass.svg"></a>
         <a href="https://pypi.python.org/pypi/frozenclass"><img alt="Python versions" src="https://img.shields.io/badge/python-3.10%2B%20%7C%20PyPy-blue.svg"></a>
         <img alt="Size" src="https://img.shields.io/github/languages/code-size/GigantPro/frozenclass">
-        <a href="https://pypi.org/project/frozenclass/"><img alt="Pypi version" src="https://img.shields.io/pypi/l/frozenclass"></a>
-    </p>
+        <a href="https://pypi.org/project/frozenclass/"><img alt="Pypi version" src="https://img.shields.io/pypi/l/frozenclass?color=orange"></a>
+</p>
+<p align="center">
+        <a href="https://github.com/GigantPro/frozenclass/actions/workflows/tests.yml"><img alt="Testing status" src="https://github.com/GigantPro/frozenclass/actions/workflows/tests.yml/badge.svg?branch=main"></a>
+        <a href="https://github.com/GigantPro/frozenclass/actions/workflows/linting.yml"><img alt="Linting" src="https://github.com/GigantPro/frozenclass/actions/workflows/linting.yml/badge.svg?branch=main"></a>
+</p>
 
 # frozenclass 
 This library was created in order to be able to save classes with a single line, as well as load them!
