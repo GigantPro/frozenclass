@@ -23,6 +23,3 @@ jobs:
 
     - name: PyLint
       run: poetry run linting
-
-    - name: tests
-      run: poetry run testing

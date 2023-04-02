@@ -9,39 +9,31 @@ from setuptools import setup
 :copyright: (c) 2023 Xiver organization
 """
 
-with open('pyproject.toml', encoding='utf-8') as file:
-    VERSION = file.read().split('=')[2].split('"')[1]
+with open("pyproject.toml", encoding="utf-8") as file:
+    VERSION = file.read().split("=")[2].split('"')[1]
 
-with open('README.md', encoding='utf-8') as f:
+with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name='frozenclass',
+    name="frozenclass",
     version=VERSION,
-
-    author='GigantPro',
-    author_email='gigantpro2000@gmail.ru',
-
-    description=(
-        'Python module for convenient storage of classes in files.'
-    ),
+    author="GigantPro",
+    author_email="gigantpro2000@gmail.ru",
+    description=("Python module for convenient storage of classes in files."),
     long_description=long_description,
-    long_description_content_type='text/markdown',
-
-    url='https://github.com/GigantPro/frozenclass',
-    download_url='https://github.com/Peopl3s/club-house-api/archive/main.zip',
-
-    license='The GPLv3 License (GPLv3)',
-
-    packages=['frozenclass'],
+    long_description_content_type="text/markdown",
+    url="https://github.com/GigantPro/frozenclass",
+    download_url="https://github.com/Peopl3s/club-house-api/archive/main.zip",
+    license="The GPLv3 License (GPLv3)",
+    packages=["frozenclass"],
     install_requires=[],
-
     classifiers=[
-        'Operating System :: OS Independent',
-        'Intended Audience :: End Users/Desktop',
-        'Intended Audience :: Developers',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3.10',
-        'Programming Language :: Python :: Implementation :: PyPy',
-    ]
+        "Operating System :: OS Independent",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: Implementation :: PyPy",
+    ],
 )

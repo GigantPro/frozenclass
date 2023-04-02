@@ -27,17 +27,21 @@ class DataWriter:
 
         self.save_data = self._create_save_data()
 
-        with open(self.saved_path, 'w', encoding='utf-8') as file:
+        with open(self.saved_path, "w", encoding="utf-8") as file:
             file.write(self.save_data)
         return True
 
     def _check_save_name(self, class_) -> None:
         if self.save_name is None:
-            self.saved_path = f'{self.saves_path}/{parse_name(class_)}' \
-                    f'_{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save'
+            self.saved_path = (
+                f"{self.saves_path}/{parse_name(class_)}"
+                f"_{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save"
+            )
         else:
-            self.saved_path = f'{self.saves_path}/{self.save_name}_'\
-                        f'{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save'
+            self.saved_path = (
+                f"{self.saves_path}/{self.save_name}_"
+                f"{str(datetime.now()).split()[0]}_{randint(10**10, 10**11)}.save"
+            )
 
     def _parse_attributes(self) -> dict:
         res = {}
@@ -46,25 +50,25 @@ class DataWriter:
             if callable(attrib_value):
                 continue
             res[attribute_name] = {
-                'var_name': attribute_name,
-                'var_type': self._parse_class_by_type(attrib_value)[0],
-                'var_type_import': self._parse_class_by_type(attrib_value)[1],
-                'var_value': attrib_value
+                "var_name": attribute_name,
+                "var_type": self._parse_class_by_type(attrib_value)[0],
+                "var_type_import": self._parse_class_by_type(attrib_value)[1],
+                "var_value": attrib_value,
             }
         return res
 
     def _parse_class_by_type(self, target_: Any) -> tuple[str, str]:  # fix me 1
         str_type = str(type(target_))
-        return str_type.split('\'')[-2].split('.')[-1], str_type.split('\'')[-2]
+        return str_type.split("'")[-2].split(".")[-1], str_type.split("'")[-2]
 
     def _create_save_data(self) -> str:
         res = GLOBAL_TEMPLATE.format(
-            save_name=self.save_name.split('/')[-1].split('.')[0],
+            save_name=self.save_name.split("/")[-1].split(".")[0],
             saved_class=self._parse_class_by_type(self.class_)[0],
-            class_path=self._parse_class_by_type(self.class_)[1]
+            class_path=self._parse_class_by_type(self.class_)[1],
         )
         for attrname in self.parsed_attributes:
-            res += '\n'
+            res += "\n"
             res += VAR_TEMPLATE.format(**self.parsed_attributes[attrname])
         return res
 
@@ -74,7 +78,7 @@ class DataWriter:
             self.parsed_attributes.pop(banned_var, None)
 
         for var_name in self.parsed_attributes:
-            if self.parsed_attributes[var_name]['var_type'] != 'NoneType':
+            if self.parsed_attributes[var_name]["var_type"] != "NoneType":
                 new_attr[var_name] = self.parsed_attributes[var_name]
 
         self.parsed_attributes = new_attr

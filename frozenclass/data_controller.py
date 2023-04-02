@@ -8,6 +8,7 @@ from .exceptions import NoSave
 
 class DataController:
     """The main class of the library. Responsible for its functions."""
+
     def __init__(self, saves_folder_path: str) -> None:
         """__init__ method
 
@@ -28,31 +29,29 @@ class DataController:
         classes_list = []
 
         for save in list_dir:
-            classes_list.append(DataParser(f'{self._saves_path}/{save}').parse_file())
+            classes_list.append(DataParser(f"{self._saves_path}/{save}").parse_file())
 
         return classes_list
 
     def change_saves_path(self, new_path: str, copy_old: bool = False) -> None:
         """Changes the path where the saves are stored, and, if necessary, moves the old saves there.
-Be careful, the next time you create a DataController, you will need to specify a new class path.
+        Be careful, the next time you create a DataController, you will need to specify a new class path.
 
-        Args:
-            new_path (str): New save folder path;
-            copy_old (bool, optional): New save folder path. Defaults to False.
+                Args:
+                    new_path (str): New save folder path;
+                    copy_old (bool, optional): New save folder path. Defaults to False.
         """
         os.makedirs(new_path, exist_ok=True)
 
         if copy_old:
             list_dir = os.listdir(self._saves_path)
             for save in list_dir:
-                copyfile(f'{self._saves_path}/{save}', f'{new_path}/{save}')
-            os.system(f'rm -rf {self._saves_path}')
+                copyfile(f"{self._saves_path}/{save}", f"{new_path}/{save}")
+            os.system(f"rm -rf {self._saves_path}")
 
         self._saves_path = new_path
 
-    def freeze_class(
-        self, target_class: Any, save_name: str = ...
-    ) -> bool:
+    def freeze_class(self, target_class: Any, save_name: str = ...) -> bool:
         """Used to save a class to a file
 
         Args:
@@ -64,8 +63,8 @@ Be careful, the next time you create a DataController, you will need to specify 
             bool: Whether the class was successfully saved to a file
         """
         if isinstance(save_name, type(...)):
-            if hasattr(target_class, '__name__'):
-                save_name = getattr(target_class, '__name__')
+            if hasattr(target_class, "__name__"):
+                save_name = getattr(target_class, "__name__")
 
             else:
                 save_name = None
@@ -86,8 +85,8 @@ Be careful, the next time you create a DataController, you will need to specify 
         list_dir = os.listdir(self._saves_path)
 
         for save_filename in list_dir:
-            parser = DataParser(f'{self._saves_path}/{save_filename}')
+            parser = DataParser(f"{self._saves_path}/{save_filename}")
             parsed_content = parser.parse_file_content()
-            if parsed_content['SavedModel']['save_name'] == save_name:
+            if parsed_content["SavedModel"]["save_name"] == save_name:
                 return parser.parse_file()
-        raise NoSave('save_name')
+        raise NoSave("save_name")
