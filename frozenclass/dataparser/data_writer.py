@@ -1,9 +1,11 @@
+from copy import deepcopy
+import json
 from typing import Any, Callable
 from random import randint
 from datetime import datetime
 
 from ..functions import parse_name
-from .const import VAR_TEMPLATE, GLOBAL_TEMPLATE, BANNED_VAR_NAMES
+from .const import JSON_FORMATS, VAR_TEMPLATE, GLOBAL_TEMPLATE, BANNED_VAR_NAMES
 
 
 class DataWriter:
@@ -69,7 +71,13 @@ class DataWriter:
         )
         for attrname in self.parsed_attributes:
             res += "\n"
-            res += VAR_TEMPLATE.format(**self.parsed_attributes[attrname])
+            if self.parsed_attributes[attrname]['var_type'] in JSON_FORMATS:
+                new_attr = deepcopy(self.parsed_attributes[attrname])
+                new_attr['var_value'] = json.dumps(new_attr['var_value'])
+
+                res += VAR_TEMPLATE.format(**new_attr)
+            else:
+                res += VAR_TEMPLATE.format(**self.parsed_attributes[attrname])
         return res
 
     def _vars_filter(self) -> None:
