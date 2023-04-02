@@ -23,6 +23,7 @@ build = "scripts.build:build"
 public = "scripts.public:public"
 linting = "scripts.pylint:start_linting"
 testing = "scripts.testing:start_testing"
+autoclean = "scripts.autoclean:autoclean"
 
 [tool.pylint]
 max-line-length = 120
