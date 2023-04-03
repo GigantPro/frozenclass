@@ -1,7 +1,6 @@
 import inspect
 import json
 from typing import Any, Callable
-from copy import deepcopy
 
 from ..exceptions import NoVar
 from .const import STANDART_TYPES
@@ -49,9 +48,9 @@ class TypesModule:
             remade_vars = {}
             for var_object in vars:
                 remade_vars[var_object['var_name']] = {}
-                for x in var_object:
-                    if x != 'var_name':
-                        remade_vars[var_object['var_name']][x] = var_object[x]
+                for var_name in var_object:
+                    if var_name != 'var_name':
+                        remade_vars[var_object['var_name']][var_name] = var_object[var_name]
 
             vars_to_init = {}
             for var in init_args.args:

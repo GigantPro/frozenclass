@@ -71,6 +71,3 @@ def test_save_load_with_locals_bases(thrd):
     new_class = controller.load_save(save_name)
 
     assert new_class.thrd == thrd
-
-
-test_save_load_with_globals_bases('123')
