@@ -18,7 +18,7 @@ from frozenclass import DataController
 def test_save_load(fst, sec, thrd):
     class Test:
         pass
-    
+
     save_name = ''.join([choice(ascii_letters) for _ in range(10)])
 
     ts_object = Test()

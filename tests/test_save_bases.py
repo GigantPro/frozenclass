@@ -50,7 +50,7 @@ def test_save_load_with_globals_bases(thrd):
         ({'1': 2},)
     ],
 )
-def test_save_load_with_globals_bases(thrd):
+def test_save_load_with_locals_bases(thrd):
     class LocalClassParent:
         fst = 123
 
