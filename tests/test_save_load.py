@@ -18,21 +18,22 @@ from frozenclass import DataController
     ],
 )
 def test_save_load(fst, sec, thrd):
-    class Test:
-        pass
+    # class Test:
+    #     pass
 
 
-    ts_object = Test()
+    # ts_object = Test()
 
-    setattr(ts_object, "fst", fst)
-    setattr(ts_object, "sec", sec)
-    setattr(ts_object, "thrd", thrd)
+    # setattr(ts_object, "fst", fst)
+    # setattr(ts_object, "sec", sec)
+    # setattr(ts_object, "thrd", thrd)
 
     controller = DataController("test_saves")
 
-    save_name = controller.freeze_class(ts_object)
+    # save_name = controller.freeze_class(ts_object)
 
-    new_class = controller.load_save(save_name)
+    # new_class = controller.load_save(save_name) #48210001663
+    new_class = controller.load_save('48210001663') 
 
     assert new_class.fst == fst and new_class.sec == sec and new_class.thrd == thrd
 

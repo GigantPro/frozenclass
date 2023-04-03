@@ -17,6 +17,7 @@ class DataParser:
 
     def parse_file(self) -> Any:
         self.saved_data = self.parse_file_content()
+        self._encoding_dict_keys()
 
         self._class = types.get_type_by_saved_type(self.saved_data["type"]["class_path"])
 
@@ -66,3 +67,40 @@ class DataParser:
         saved_data["var"] = new_vars
 
         return saved_data
+
+    def _encoding_dict_keys(self) -> None:
+        res = []
+        for var_decription in self.saved_data['var']:
+            if var_decription['var_type'] != 'dict':
+                continue
+            for key in var_decription['var_value']: # FIX ME PLS!!!!
+                print(type(var_decription['var_value']), var_decription['var_value'], '@frozenclass|' in var_decription['var_value'])
+                if '@frozenclass|' in key:
+                    print(1)
+                    new_key = self.__parse_value_name(key)
+                    new_var_desc = var_decription
+                    new_var_desc['var_value'] = new_key
+                else:
+                    res.append(var_decription)
+        self.saved_data['var'] = res
+        print(self.saved_data)
+
+    def __parse_value_name(self, key: str) -> str:
+        key_value, description = key.split('@')
+        new_key = ''
+
+        name, args = description.split('|')[0]
+        if name != 'frozenclass':
+            return key
+
+        for specif in args.split(';'):
+            if specif.strip() == '':
+                continue
+
+            print(specif)
+            spec_type, spec_value = specif.split(':')
+
+            if spec_type == 'type':
+                new_key = \
+                    TypesModule().get_value_by_type(key_value, spec_value)
+        return new_key

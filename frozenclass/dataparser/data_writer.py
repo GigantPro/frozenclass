@@ -108,4 +108,4 @@ class DataWriter:
 
     def ___processing_marks(self, value: Any) -> str:
         type_name = self._parse_type_by_target(value)[0]
-        return f'{value}@frozenclass;type={type_name}'
+        return f'{value}@frozenclass|type:{type_name};'
