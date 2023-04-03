@@ -17,7 +17,6 @@ class DataParser:
 
     def parse_file(self) -> Any:
         self.saved_data = self.parse_file_content()
-        print(self.saved_data)
 
         self._class = types.get_type_by_saved_type(self.saved_data["type"]["class_path"])
 
@@ -51,6 +50,8 @@ class DataParser:
                 else:
                     value = "=".join(value) if isinstance(value, list) else value
                     saved_data[now_name][name] = value
+        if temp_var not in var:
+            var.append(temp_var)
         saved_data["var"] = var
 
         new_vars = []
@@ -63,7 +64,5 @@ class DataParser:
             new_vars.append(_new_var_)
 
         saved_data["var"] = new_vars
-        
-        print(new_vars)
 
         return saved_data

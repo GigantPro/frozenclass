@@ -42,8 +42,6 @@ class TypesModule:
 
             return var_description["var_name"], value
 
-        print(vars)
-
         if hasattr(class_, "__init__"):
             init_args = inspect.getfullargspec(class_.__init__)
             init_args.args.remove("self")

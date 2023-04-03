@@ -6,7 +6,7 @@ from frozenclass import DataController
 
 
 @pytest.mark.parametrize(
-    "a, b, c",
+    "fst, sec, thrd",
     [
         (1, 2, 3),
         (2, 3, 4),
@@ -15,7 +15,7 @@ from frozenclass import DataController
         ([1, 2, 3], ['1', '2', '3'], (3, 4, 5))
     ],
 )
-def test_save_load(a, b, c):
+def test_save_load(fst, sec, thrd):
     class Test:
         pass
     
@@ -23,9 +23,9 @@ def test_save_load(a, b, c):
 
     ts_object = Test()
 
-    setattr(ts_object, "a", a)
-    setattr(ts_object, "b", b)
-    setattr(ts_object, "c", c)
+    setattr(ts_object, "fst", fst)
+    setattr(ts_object, "sec", sec)
+    setattr(ts_object, "thrd", thrd)
 
     controller = DataController("test_saves")
 
@@ -33,6 +33,4 @@ def test_save_load(a, b, c):
 
     new_class = controller.load_save(save_name)
 
-    assert new_class.a == a and new_class.b == b and new_class.c == c
-
-test_save_load([1, 2, 3], ['1', '2', '3'], (3, 4, 5))
+    assert new_class.fst == fst and new_class.sec == sec and new_class.thrd == thrd
