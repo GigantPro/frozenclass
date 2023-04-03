@@ -51,7 +51,7 @@ class DataController:
 
         self._saves_path = new_path
 
-    def freeze_class(self, target_class: Any, save_name: str = ...) -> bool:
+    def freeze_class(self, target_class: Any, save_name: str = ...) -> str:
         """Used to save a class to a file
 
         Args:
@@ -60,7 +60,7 @@ class DataController:
             It is also displayed in the name of the file with saving. Defaults to ...
 
         Returns:
-            bool: Whether the class was successfully saved to a file
+            str: Save name
         """
         if isinstance(save_name, type(...)):
             if hasattr(target_class, "__name__"):

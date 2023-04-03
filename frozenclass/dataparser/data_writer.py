@@ -19,7 +19,7 @@ class DataWriter:
         self.save_data = None
         self.class_ = None
 
-    def freeze_class(self, class_: Callable) -> bool:
+    def freeze_class(self, class_: Callable) -> str:
         self._check_save_name()
         self.class_ = class_
 
@@ -31,7 +31,7 @@ class DataWriter:
 
         with open(self.saved_path, "w", encoding="utf-8") as file:
             file.write(self.save_data)
-        return True
+        return self.save_name
 
     def _check_save_name(self) -> None:
         if self.save_name is None:
