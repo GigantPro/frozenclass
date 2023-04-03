@@ -71,25 +71,24 @@ class DataParser:
     def _encoding_dict_keys(self) -> None:
         res = []
         for var_decription in self.saved_data['var']:
-            if var_decription['var_type'] != 'dict':
-                continue
-            for key in var_decription['var_value']: # FIX ME PLS!!!!
-                print(type(var_decription['var_value']), var_decription['var_value'], '@frozenclass|' in var_decription['var_value'])
-                if '@frozenclass|' in key:
-                    print(1)
-                    new_key = self.__parse_value_name(key)
-                    new_var_desc = var_decription
-                    new_var_desc['var_value'] = new_key
-                else:
-                    res.append(var_decription)
+            new_var = var_decription
+            if var_decription['var_type'] == 'dict':
+                new_value = {}
+                for key in var_decription['var_value']:
+                    if '@frozenclass|' not in key:
+                        continue
+
+                    new_value[self.__parse_value_name(key)] = \
+                        var_decription['var_value'][key]
+                new_var['var_value'] = new_value
+            res.append(new_var)
         self.saved_data['var'] = res
-        print(self.saved_data)
 
     def __parse_value_name(self, key: str) -> str:
         key_value, description = key.split('@')
         new_key = ''
 
-        name, args = description.split('|')[0]
+        name, args = description.split('|')
         if name != 'frozenclass':
             return key
 
@@ -97,7 +96,6 @@ class DataParser:
             if specif.strip() == '':
                 continue
 
-            print(specif)
             spec_type, spec_value = specif.split(':')
 
             if spec_type == 'type':

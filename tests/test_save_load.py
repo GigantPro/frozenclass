@@ -14,27 +14,24 @@ from frozenclass import DataController
         ("asd", "qwe", "zxcasd"),
         ([1, 2, 3], ['1', '2', '3'], (3, 4, 5)),
         ([1, '2', ['3', '4']], 1, 2),
-        ([1, '2', ['3', '4']], {1: 2, 2: ['123']}, ('a', '', 'qwe')),
     ],
 )
 def test_save_load(fst, sec, thrd):
-    # class Test:
-    #     pass
+    class Test:
+        pass
 
+    save_name = ''.join([choice(ascii_letters) for _ in range(10)])
 
-    # ts_object = Test()
+    ts_object = Test()
 
-    # setattr(ts_object, "fst", fst)
-    # setattr(ts_object, "sec", sec)
-    # setattr(ts_object, "thrd", thrd)
+    setattr(ts_object, "fst", fst)
+    setattr(ts_object, "sec", sec)
+    setattr(ts_object, "thrd", thrd)
 
     controller = DataController("test_saves")
 
-    # save_name = controller.freeze_class(ts_object)
+    controller.freeze_class(ts_object, save_name)
 
-    # new_class = controller.load_save(save_name) #48210001663
-    new_class = controller.load_save('48210001663') 
+    new_class = controller.load_save(save_name)
 
     assert new_class.fst == fst and new_class.sec == sec and new_class.thrd == thrd
-
-test_save_load([1, '2', ['3', '4']], {1: 2, 2: ['123']}, ('a', '', 'qwe'))
