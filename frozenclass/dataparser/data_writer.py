@@ -26,6 +26,7 @@ class DataWriter:
         self.class_vars = class_.__dir__()
         self.parsed_attributes = self._parse_attributes()
         self._vars_filter()
+        self._remake_dict_keys()
 
         self.save_data = self._create_save_data()
 
@@ -50,21 +51,21 @@ class DataWriter:
                 continue
             res[attribute_name] = {
                 "var_name": attribute_name,
-                "var_type": self._parse_class_by_type(attrib_value)[0],
-                "var_type_import": self._parse_class_by_type(attrib_value)[1],
+                "var_type": self._parse_type_by_target(attrib_value)[0],
+                "var_type_import": self._parse_type_by_target(attrib_value)[1],
                 "var_value": attrib_value,
             }
         return res
 
-    def _parse_class_by_type(self, target_: Any) -> tuple[str, str]:  # fix me 1
+    def _parse_type_by_target(self, target_: Any) -> tuple[str, str]:  # fix me 1
         str_type = str(type(target_))
         return str_type.split("'")[-2].split(".")[-1], str_type.split("'")[-2]
 
     def _create_save_data(self) -> str:
         res = GLOBAL_TEMPLATE.format(
             save_name=self.save_name,
-            saved_class=self._parse_class_by_type(self.class_)[0],
-            class_path=self._parse_class_by_type(self.class_)[1],
+            saved_class=self._parse_type_by_target(self.class_)[0],
+            class_path=self._parse_type_by_target(self.class_)[1],
             class_parents=TypesModule().get_json_bases_data_by_class(self.class_),
         )
         for attrname in self.parsed_attributes:
@@ -88,3 +89,23 @@ class DataWriter:
                 new_attr[var_name] = self.parsed_attributes[var_name]
 
         self.parsed_attributes = new_attr
+
+    def _remake_dict_keys(self) -> None:
+        for var_name in self.parsed_attributes:
+            if self.parsed_attributes[var_name]['var_type'] == 'dict':
+                self.parsed_attributes[var_name]['var_value'] = \
+                    self.__add_marks_for_dict(self.parsed_attributes[var_name]['var_value'])
+
+    def __add_marks_for_dict(self, dict_vals: dict) -> dict:
+        new_dict = {}
+        for key in dict_vals:
+            if not isinstance(key, str):
+                new_key = self.___processing_marks(key)
+                new_dict[new_key] = dict_vals[key]
+            else:
+                new_dict[key] = dict_vals[key]
+        return new_dict
+
+    def ___processing_marks(self, value: Any) -> str:
+        type_name = self._parse_type_by_target(value)[0]
+        return f'{value}@frozenclass;type={type_name}'

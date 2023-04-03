@@ -7,3 +7,4 @@ def autoclean():
     system("rm -rf .pytest_cache")
     system("rm -rf saves")
     system("rm -rf */__pycache__")
+    system('rm -rf test_saves')
