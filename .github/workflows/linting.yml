@@ -15,11 +15,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Poetry
-      run: curl -sSL https://install.python-poetry.org | python3 -
+    - name: Upgrade pip
+      run: pip install --upgrade pip
 
     - name: Install dependencies
-      run: poetry install --only dev
+      run: pip install pylint
 
     - name: PyLint
-      run: poetry run linting
+      run: pylint -j$(nproc) $(git ls-files '*.py')
