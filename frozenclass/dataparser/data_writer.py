@@ -20,7 +20,7 @@ class DataWriter:
         self.class_ = None
 
     def freeze_class(self, class_: Callable) -> bool:
-        self._check_save_name(class_)
+        self._check_save_name()
         self.class_ = class_
 
         self.class_vars = class_.__dir__()
@@ -33,7 +33,7 @@ class DataWriter:
             file.write(self.save_data)
         return True
 
-    def _check_save_name(self, class_) -> None:
+    def _check_save_name(self) -> None:
         if self.save_name is None:
             self.save_name = f'{"".join([str(randint(0, 10)) for _ in range(10)])}'
 

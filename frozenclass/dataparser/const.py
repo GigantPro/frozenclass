@@ -23,6 +23,7 @@ STANDART_TYPES = {
     "tuple": tuple,
     "str": str,
     "dict": dict,
+    "object": object,
 }
 
 JSON_FORMATS = {

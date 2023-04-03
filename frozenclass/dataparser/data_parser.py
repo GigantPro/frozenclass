@@ -17,8 +17,9 @@ class DataParser:
 
     def parse_file(self) -> Any:
         self.saved_data = self.parse_file_content()
+        print(self.saved_data)
 
-        self._class = types.get_type_by_saved_type(self.saved_data["type"])
+        self._class = types.get_type_by_saved_type(self.saved_data["type"]["class_path"])
 
         if self._class:
             return types.create_class_instance(self._class, self.saved_data["var"])
@@ -62,5 +63,7 @@ class DataParser:
             new_vars.append(_new_var_)
 
         saved_data["var"] = new_vars
+        
+        print(new_vars)
 
         return saved_data

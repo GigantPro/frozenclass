@@ -21,7 +21,7 @@ class TypesModule:
         return value
 
     def get_type_by_saved_type(self, type_data: str) -> Any | None:
-        components = type_data["class_path"].split(".")
+        components = type_data.split(".")
         if components[0] in STANDART_TYPES:
             return STANDART_TYPES[components[0]]
 
@@ -37,10 +37,12 @@ class TypesModule:
         self, class_: Callable, vars: dict[str:Any]
     ) -> Any:  # Fix me переделать под наследование
         def _get_var_with_type(var_description: dict) -> tuple[str, Any]:
-            type_ = self.get_type_by_saved_type(var_description)
+            type_ = self.get_type_by_saved_type(var_description["class_path"])
             value = type_(var_description["var_value"])
 
             return var_description["var_name"], value
+
+        print(vars)
 
         if hasattr(class_, "__init__"):
             init_args = inspect.getfullargspec(class_.__init__)
@@ -64,7 +66,9 @@ class TypesModule:
         return res_class
 
     def generate_class_by_info(self, info: dict) -> Any:
-        new_type = type(info["type"]["saved_class"], (object,), {})
+        parents = self.get_parents_by_json(info)
+
+        new_type = type(info["type"]["saved_class"], parents, {})
         if not getattr(new_type, "__name__", False):
             setattr(new_type, "__name__", info["SavedModel"]["save_name"])
         return new_type
@@ -74,3 +78,11 @@ class TypesModule:
 
         bases_list = s_bases.split('\'')[1::2]
         return json.dumps(bases_list)
+
+    def get_parents_by_json(self, json_: list) -> tuple[Callable]:
+        parents_list_str = json.loads(json_['type']['class_parents'])
+        parents_list = [self.get_type_by_saved_type(parent) for parent in parents_list_str]
+        for i in range(len(parents_list)):
+            if parents_list[i] is None:
+                parents_list[i] = type(parents_list_str[i], (object,), {})
+        return tuple(parents_list)
