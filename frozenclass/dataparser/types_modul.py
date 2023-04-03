@@ -35,7 +35,7 @@ class TypesModule:
 
     def create_class_instance(
         self, class_: Callable, vars: dict[str:Any]
-    ) -> Any:  # Fix me переделать под наследование
+    ) -> Any:  # Fix me переделать под наследование; приаодить переменные к типу
         def _get_var_with_type(var_description: dict) -> tuple[str, Any]:
             type_ = self.get_type_by_saved_type(var_description["class_path"])
             value = type_(var_description["var_value"])
@@ -46,13 +46,21 @@ class TypesModule:
             init_args = inspect.getfullargspec(class_.__init__)
             init_args.args.remove("self")
 
-            _vars = deepcopy(vars)
+            remade_vars = {}
+            for var_object in vars:
+                remade_vars[var_object['var_name']] = {}
+                for x in var_object:
+                    if x != 'var_name':
+                        remade_vars[var_object['var_name']][x] = var_object[x]
+
             vars_to_init = {}
             for var in init_args.args:
-                if var not in _vars:
+                if var not in remade_vars:
                     raise NoVar(var)
-                vars_to_init[var] = _vars[var]
-                _vars.pop(var)
+                vars_to_init[var] = self.get_value_by_type(
+                    remade_vars[var]['var_value'],
+                    remade_vars[var]['var_type'],
+                )
             res_class = class_(**vars_to_init)
 
         else:

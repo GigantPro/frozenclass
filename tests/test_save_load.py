@@ -12,7 +12,9 @@ from frozenclass import DataController
         (2, 3, 4),
         (10000000, 2000000, 23423456876),
         ("asd", "qwe", "zxcasd"),
-        ([1, 2, 3], ['1', '2', '3'], (3, 4, 5))
+        ([1, 2, 3], ['1', '2', '3'], (3, 4, 5)),
+        ([1, '2', ['3', '4']], 1, 2),
+        
     ],
 )
 def test_save_load(fst, sec, thrd):
@@ -34,3 +36,4 @@ def test_save_load(fst, sec, thrd):
     new_class = controller.load_save(save_name)
 
     assert new_class.fst == fst and new_class.sec == sec and new_class.thrd == thrd
+
