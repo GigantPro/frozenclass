@@ -76,6 +76,7 @@ class DataParser:
                 new_value = {}
                 for key in var_decription['var_value']:
                     if '@frozenclass|' not in key:
+                        new_value[key] = var_decription['var_value'][key]
                         continue
 
                     new_value[self.__parse_value_name(key)] = \

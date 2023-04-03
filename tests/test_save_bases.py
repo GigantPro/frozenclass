@@ -42,12 +42,13 @@ def test_save_load_with_globals_bases(thrd):
 @pytest.mark.parametrize(
     "thrd",
     [
-        (1,),
-        (2,),
-        (2000000,),
-        ("qwe",),
-        ([1, 2, 3],),
-        ({'1': 2},)
+        1,
+        2,
+        2000000,
+        "qwe",
+        [1, 2, 3],
+        {'1': 2},
+        {1: 2, 3: 4}
     ],
 )
 def test_save_load_with_locals_bases(thrd):

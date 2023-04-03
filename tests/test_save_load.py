@@ -14,6 +14,7 @@ from frozenclass import DataController
         ("asd", "qwe", "zxcasd"),
         ([1, 2, 3], ['1', '2', '3'], (3, 4, 5)),
         ([1, '2', ['3', '4']], 1, 2),
+        ({1: 2}, 2, '3')
     ],
 )
 def test_save_load(fst, sec, thrd):
