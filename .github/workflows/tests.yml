@@ -41,7 +41,7 @@ jobs:
     - name: Pip upgrade
       run: pip install --upgrade pip
     - name: Poetry install
-      run: pip install poetry
+      run: pip3 install poetry
     - name: Install dependencies
       run: python -m poetry install --with dev
     - name: Run tests
