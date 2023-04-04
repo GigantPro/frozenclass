@@ -17,12 +17,16 @@ class PublicClassChild(PublicClassParent):
 @pytest.mark.parametrize(
     "thrd",
     [
-        (1,),
-        (2,),
-        (2000000,),
-        ("qwe",),
-        ([1, 2, 3],),
-        ({'1': 2},)
+        1,
+        2,
+        2000000,
+        "qwe",
+        [1, 2, 3],
+        {'1': 2},
+        "123qwe@",
+        [123123123, "123123123"],
+        ''.join([choice(ascii_letters) for _ in range(50)]),
+        f"{''.join([choice(ascii_letters) for _ in range(10)])}123123",
     ],
 )
 def test_save_load_with_globals_bases(thrd):
