@@ -10,7 +10,7 @@ class TypesModule:
     def __init__(self) -> None:
         pass
 
-    def get_value_by_type(self, value: Any, type_: str) -> Any:  # fix me 1
+    def get_value_by_type(self, value: Any, type_: str) -> Any:
         if STANDART_TYPES.get(type_, False):
             return STANDART_TYPES[type_](value)
 
@@ -34,7 +34,7 @@ class TypesModule:
 
     def create_class_instance(
         self, class_: Callable, vars: dict[str:Any]
-    ) -> Any:  # Fix me переделать под наследование; приаодить переменные к типу
+    ) -> Any:
         def _get_var_with_type(var_description: dict) -> tuple[str, Any]:
             type_ = self.get_type_by_saved_type(var_description["class_path"])
             value = type_(var_description["var_value"])

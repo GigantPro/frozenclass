@@ -61,7 +61,7 @@ class DataParser:
             if var["var_type"] in JSON_FORMATS:
                 _new_var_["var_value"] = json.loads(
                     _new_var_["var_value"]
-                )  # Fix me если члюч не строчка
+                )  
             new_vars.append(_new_var_)
 
         saved_data["var"] = new_vars

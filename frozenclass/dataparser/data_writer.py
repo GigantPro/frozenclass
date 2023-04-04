@@ -57,7 +57,7 @@ class DataWriter:
             }
         return res
 
-    def _parse_type_by_target(self, target_: Any) -> tuple[str, str]:  # fix me 1
+    def _parse_type_by_target(self, target_: Any) -> tuple[str, str]:
         str_type = str(type(target_))
         return str_type.split("'")[-2].split(".")[-1], str_type.split("'")[-2]
 
