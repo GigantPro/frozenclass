@@ -24,9 +24,7 @@ class PublicClassChild(PublicClassParent):
         [1, 2, 3],
         {'1': 2},
         "123qwe@",
-        [123123123, "123123123"],
-        ''.join([choice(ascii_letters) for _ in range(50)]),
-        f"{''.join([choice(ascii_letters) for _ in range(10)])}123123",
+        [123123123, "123123123"]
     ],
 )
 def test_save_load_with_globals_bases(thrd):

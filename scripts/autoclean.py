@@ -6,5 +6,5 @@ def autoclean():
     system("rm -rf frozenclass.egg-info")
     system("rm -rf .pytest_cache")
     system("rm -rf saves")
-    system("rm -rf */__pycache__")
+    system("find . -name __pycache__ -exec rm -rf {} \;")
     system('rm -rf test_saves')

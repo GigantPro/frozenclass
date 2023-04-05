@@ -14,20 +14,33 @@ class_path={var_type_import}
 var_value={var_value}
 """
 
-BANNED_VAR_NAMES = ["__dict__"]
+BANNED_VAR_NAMES = (
+    '__dict__',
+    '__class__',
+    '__module__',
+)
 
 STANDART_TYPES = {
     "int": int,
-    "float": float,
+    "float": float, 
     "list": list,
     "tuple": tuple,
     "str": str,
     "dict": dict,
     "object": object,
+    "str": str
 }
+
+STANDART_TYPES_TUPLE = tuple([type_ for type_ in STANDART_TYPES.values()])
 
 JSON_FORMATS = {
     "list": list,
     "dict": dict,
     "tuple": tuple,
 }
+
+BAD_SAVE_PHRASES = (
+    'built-in method',
+    'method-wrapper',
+    'builtin_function_or_method',
+)

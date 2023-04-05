@@ -90,3 +90,12 @@ class DataController:
             if parsed_content["SavedModel"]["save_name"] == save_name:
                 return parser.parse_file()
         raise NoSave("save_name")
+
+    def deep_freeze(self, target_class: Any, save_name: str = ...) -> str:
+        if isinstance(save_name, type(...)):
+            if hasattr(target_class, "__name__"):
+                save_name = getattr(target_class, "__name__")
+
+            else:
+                save_name = None
+        return DataWriter(self._saves_path, save_name).deep_freeze(target_class)
