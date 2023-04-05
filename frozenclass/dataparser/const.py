@@ -28,10 +28,9 @@ STANDART_TYPES = {
     "str": str,
     "dict": dict,
     "object": object,
-    "str": str
 }
 
-STANDART_TYPES_TUPLE = tuple([type_ for type_ in STANDART_TYPES.values()])
+STANDART_TYPES_TUPLE = tuple(type_ for type_ in STANDART_TYPES.values())
 
 JSON_FORMATS = {
     "list": list,

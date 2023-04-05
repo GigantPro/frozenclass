@@ -250,7 +250,7 @@ class DataWriter:
                 else:
                     res += VAR_TEMPLATE.format(**data['var_value'][attrname])
 
-        
+
 
         if recursion_num == 0:
             with open(self.saved_path, 'w', encoding='utf-8') as filesave:
