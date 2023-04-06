@@ -23,17 +23,20 @@ from frozenclass import DataController
 
 # Test class
 class Test:
-    pass
+    test_var = 10
 
 
 # Init controller class
 data_controller = DataController('PATH_TO_SAVE`S FOLDER')
 
 # Save class as file
-data_controller.freeze_class(Test())
+save_name = data_controller.freeze_class(Test())
 
 # Get all saves classes models
-loaded_classes = data_controller.get_all_saves_list()  # -> list[class instances]
+loaded_classes = data_controller.load_save(save_name)  # -> Test object
+
+# Get var value
+print(test_var.test_var) # -> 10
 ```
 
 ## Installation
@@ -54,5 +57,5 @@ $ pip install $(ls -Art | tail -n 1)
 
 ## poetry install:
 ```bash
-$ curl -sSL https://install.python-poetry.org | python3 -
+$ pip install poetry
 ```
