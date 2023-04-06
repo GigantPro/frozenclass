@@ -9,8 +9,9 @@ types = TypesModule()
 
 
 class DataParser:
-    def __init__(self, filename: str) -> None:
+    def __init__(self, filename: str, data_controller_obj) -> None:
         self.filename = filename
+        self.data_controller_obj = data_controller_obj
 
         self.saved_data = {}
         self._class = None
@@ -18,6 +19,7 @@ class DataParser:
     def parse_file(self) -> Any:
         self.saved_data = self.parse_file_content()
         self._encoding_dict_keys()
+        self.saved_data = self._encoding_deep_keys(self.saved_data)
 
         self._class = types.get_type_by_saved_type(self.saved_data["type"]["class_path"])
 
@@ -101,5 +103,18 @@ class DataParser:
 
             if spec_type == 'type':
                 new_key = \
-                    TypesModule().get_value_by_type(key_value, spec_value)
+                    types.get_value_by_type(key_value, spec_value)
         return new_key
+
+    def _encoding_deep_keys(self, data: dict) -> dict:
+        new_var_desc = []
+        for var_desc in data['var']:
+            if '@frozenclass|' in var_desc['var_value']:
+                var_desc['var_value'] = var_desc['var_value'][13:]
+                name_, value_ = var_desc['var_value'].split('?')
+
+                if name_ == 'saved_data':
+                    var_desc['var_value'] = self.data_controller_obj.load_save(value_)
+            new_var_desc.append(var_desc)
+        data['var'] = new_var_desc
+        return data

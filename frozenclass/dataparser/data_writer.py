@@ -121,10 +121,6 @@ class DataWriter:
         self._check_save_name()
         self.class_ = class_
 
-        # self.parsed_attributes = self._deep_parse_attributes(self.class_)
-        # self._vars_filter()
-        # self._remake_dict_keys()
-
         self._save_deep_data(self.class_)
         return self.save_name
 
@@ -214,7 +210,7 @@ class DataWriter:
                 if data[attrname]['var_type_import'] not in STANDART_TYPES:
                     self.__save_by_data(data[attrname], recursion_num + 1)
                     new_attrs = data[attrname]
-                    new_attrs['var_value'] = f'@frozenclass|saved_data={self.save_name}:{recursion_num + 1}'
+                    new_attrs['var_value'] = f'@frozenclass|saved_data?{self.save_name}:{recursion_num + 1}'
                     res += VAR_TEMPLATE.format(**new_attrs)
                 elif data[attrname]['var_type'] in JSON_FORMATS:
                     new_attr = deepcopy(data[attrname])
@@ -232,15 +228,13 @@ class DataWriter:
                 class_parents=TypesModule().get_json_bases_data_by_class(TypesModule()\
                     .get_type_by_saved_type(data["var_type_import"])),
             )
-            print(data)
 
             for attrname in data['var_value']:
                 res += "\n"
-                print(attrname)
                 if data['var_value'][attrname]['var_type_import'] not in STANDART_TYPES:
                     self.__save_by_data(data['var_value'][attrname], recursion_num + 1)
                     new_attrs = data['var_value'][attrname]
-                    new_attrs['var_value'] = f'@frozenclass|saved_data={self.save_name}:{recursion_num + 1}'
+                    new_attrs['var_value'] = f'@frozenclass|saved_data?{self.save_name}:{recursion_num + 1}'
                     res += VAR_TEMPLATE.format(**new_attrs)
                 elif data['var_value'][attrname]['var_type'] in JSON_FORMATS:
                     new_attr = deepcopy(data['var_value'][attrname])

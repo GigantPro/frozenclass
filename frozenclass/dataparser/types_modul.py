@@ -66,7 +66,16 @@ class TypesModule:
             res_class = class_()
 
         for var in vars:
-            setattr(res_class, *_get_var_with_type(var))
+            var_type_now = self.get_type_by_saved_type(var['class_path'])
+
+            if var_type_now is None and var['class_path'] != 'NoneType' and not isinstance(var['var_value'], str):
+                setattr(res_class, var['var_name'], var['var_value'])
+
+            elif isinstance(var['var_value'], var_type_now):
+                setattr(res_class, var['var_name'], var['var_value'])
+
+            else:
+                setattr(res_class, *_get_var_with_type(var))
 
         return res_class
 

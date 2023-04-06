@@ -29,7 +29,7 @@ class DataController:
         classes_list = []
 
         for save in list_dir:
-            classes_list.append(DataParser(f"{self._saves_path}/{save}").parse_file())
+            classes_list.append(DataParser(f"{self._saves_path}/{save}", self).parse_file())
 
         return classes_list
 
@@ -85,7 +85,7 @@ class DataController:
         list_dir = os.listdir(self._saves_path)
 
         for save_filename in list_dir:
-            parser = DataParser(f"{self._saves_path}/{save_filename}")
+            parser = DataParser(f"{self._saves_path}/{save_filename}", self)
             parsed_content = parser.parse_file_content()
             if parsed_content["SavedModel"]["save_name"] == save_name:
                 return parser.parse_file()
