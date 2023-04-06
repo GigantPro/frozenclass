@@ -1,4 +1,9 @@
-# Warning: project is unstable now. At the moment, the library has just begun to be developed, so this is not the final form of the product!
+<p align="center">
+        <h1 align="center">FrozenClass</h1>
+        <h2 align="center">This library was created in order to be able to save classes with a single line, as well as load them!</h2>
+</a>
+
+
 
 <p align="center">
         <a href="https://pypi.python.org/pypi/frozenclass"><img alt="Pypi version" src="https://img.shields.io/pypi/v/frozenclass.svg"></a>
@@ -11,8 +16,7 @@
         <a href="https://github.com/GigantPro/frozenclass/actions/workflows/linting.yml"><img alt="Linting" src="https://github.com/GigantPro/frozenclass/actions/workflows/linting.yml/badge.svg?branch=main"></a>
 </p>
 
-# frozenclass 
-This library was created in order to be able to save classes with a single line, as well as load them!
+
 
 
 
