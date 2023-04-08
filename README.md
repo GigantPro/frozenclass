@@ -54,8 +54,8 @@ $ pip install frozenclass
 ### Dependencies:
 - **poetry**
 ```bash
-$ git clone https://github.com/GigantPro/frozenclass.git; cd frozenclass
-$ poetry run build
+$ git clone https://github.com/GigantPro/frozenclass.git; cd frozenclass-main
+$ poetry run build; cd dist
 $ pip install $(ls -Art | tail -n 1)
 ```
 
