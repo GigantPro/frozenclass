@@ -1,6 +1,7 @@
 from typing import Any
 import os
 from shutil import copyfile
+import platform
 
 from .dataparser import DataParser, DataWriter
 from .exceptions import NoSave
@@ -51,6 +52,60 @@ class DataController:
 
         self._saves_path = new_path
 
+    def load_save(self, save_name: str) -> Any:
+        """Needed to load a save with a specific save name
+
+        Args:
+            save_name (str): The name of the desired save
+
+        Raises:
+            NoSave: If there is no save with the given name
+
+        Returns:
+            Any: The instance of the class that was saved
+        """
+        list_dir = os.listdir(self._saves_path)
+
+        for save_filename in list_dir:
+            parser = DataParser(f"{self._saves_path}/{save_filename}", self)
+            parsed_content = parser.parse_file_content()
+            if parsed_content["SavedModel"]["save_name"].lower() == save_name.lower():
+                return parser.parse_file()
+        raise NoSave("save_name")
+
+    def load_saved_vars(self, save_name: str) -> Any:
+        list_dir = os.listdir(self._saves_path)
+
+        for save_filename in list_dir:
+            parser = DataParser(f"{self._saves_path}/{save_filename}", self)
+            parsed_content = parser.parse_file_content()
+            if parsed_content["SavedModel"]["save_name"].lower() == save_name.lower():
+                return parser.parse_saved_args()
+        raise NoSave("save_name")
+
+    def dalete_save(self, save_name: str) -> None:
+        """Need to delete save with this save name. Doesn't delete dependent saves.
+
+        Args:
+            save_name (str): The name of the save to be deleted.
+
+        Raises:
+            NoSave: If there is no save with the given name
+        """
+        list_dir = os.listdir(self._saves_path)
+
+        for save_filename in list_dir:
+            parser = DataParser(f"{self._saves_path}/{save_filename}", self)
+            parsed_content = parser.parse_file_content()
+            if parsed_content["SavedModel"]["save_name"] == save_name:
+                platform_ = platform.system()
+                if platform_ == 'Linux':
+                    os.system(f'rm -rf "{self._saves_path}/{save_filename}"')
+                elif platform_ == 'Windows':
+                    os.system(f'del /f "{self._saves_path}/{save_filename}"')
+                return
+        raise NoSave("save_name")
+
     def freeze_class(self, target_class: Any, save_name: str = ...) -> str:
         """Used to save a class to a file
 
@@ -69,27 +124,6 @@ class DataController:
             else:
                 save_name = None
         return DataWriter(self._saves_path, save_name).freeze_class(target_class)
-
-    def load_save(self, save_name: str) -> Any:
-        """Needed to load a save with a specific save name
-
-        Args:
-            save_name (str): The name of the desired save
-
-        Raises:
-            NoSave: If there is no save with the given name
-
-        Returns:
-            Any: The instance of the class that was saved
-        """
-        list_dir = os.listdir(self._saves_path)
-
-        for save_filename in list_dir:
-            parser = DataParser(f"{self._saves_path}/{save_filename}", self)
-            parsed_content = parser.parse_file_content()
-            if parsed_content["SavedModel"]["save_name"] == save_name:
-                return parser.parse_file()
-        raise NoSave("save_name")
 
     def deep_freeze(self, target_class: Any, save_name: str = ...) -> str:
         if isinstance(save_name, type(...)):

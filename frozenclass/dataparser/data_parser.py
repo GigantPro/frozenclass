@@ -29,6 +29,21 @@ class DataParser:
         type_ = types.generate_class_by_info(self.saved_data)
         return types.create_class_instance(type_, self.saved_data["var"])
 
+    def parse_saved_args(self) -> dict[str: Any]:
+        self.saved_data = self.parse_file_content()
+        self._encoding_dict_keys()
+        self.saved_data = self._encoding_deep_keys(self.saved_data)
+        return self._get_vars_from_saved_data(self.saved_data)
+
+    def _get_vars_from_saved_data(self, saved_data: dict) -> dict[str: Any]:
+        if saved_data['var'] is None:
+            return {}
+
+        res = {}
+        for var_desc in saved_data['var']:
+            res[var_desc['var_name']] = TypesModule().get_value_by_type(var_desc['var_value'], var_desc['var_type'])
+        return res
+
     def parse_file_content(self, file_name: str | None = None) -> dict[Any]:
         file_name = file_name if file_name else self.filename
         with open(file_name, "r", encoding="utf-8") as file:

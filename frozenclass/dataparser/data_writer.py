@@ -88,11 +88,13 @@ class DataWriter:
 
     def _vars_filter(self) -> None:
         new_attr = {}
+
         for banned_var in BANNED_VAR_NAMES:
             self.parsed_attributes.pop(banned_var, None)
 
         for var_name in self.parsed_attributes:
-            if self.parsed_attributes[var_name]["var_type"] != "NoneType":
+            if self.parsed_attributes[var_name]["var_type"] != "NoneType" and\
+                self.parsed_attributes[var_name]["var_type"] in STANDART_TYPES:
                 new_attr[var_name] = self.parsed_attributes[var_name]
 
         self.parsed_attributes = new_attr
