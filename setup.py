@@ -5,7 +5,7 @@ from setuptools import setup
 
 """
 :authors: GigantPro
-:license: The GPLv3 License (GPLv3), see LICENSE file
+:license: The GPLv3 License (GPLv3)
 :copyright: (c) 2023 Xiver organization
 """
 

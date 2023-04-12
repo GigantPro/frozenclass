@@ -58,8 +58,3 @@ $ git clone https://github.com/GigantPro/frozenclass.git; cd frozenclass-main
 $ poetry run build; cd dist
 $ pip install $(ls -Art | tail -n 1)
 ```
-
-## poetry install:
-```bash
-$ pip install poetry
-```
