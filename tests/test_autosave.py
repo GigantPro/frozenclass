@@ -1,7 +1,3 @@
-from random import choice
-from string import ascii_letters
-import pytest
-
 from frozenclass import AutoFreeze, DataController
 
 

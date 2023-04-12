@@ -13,7 +13,7 @@ def AutoFreeze(saves_path: str = 'saves', mode: str = 'freeze'):
     """
     def wrapper_func(target_class: Any):
         if '__name__' not in target_class.__dict__:
-                raise AttributeError('Your class must contain a variable called __name__')
+            raise AttributeError('Your class must contain a variable called __name__')
 
         setattr(target_class, '__controller', DataController(saves_path))
         setattr(target_class, '__is_init', False)
