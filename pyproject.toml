@@ -4,7 +4,7 @@ version = "0.0.9"
 description = "Python module for convenient storage of classes in files."
 authors = ["GigantPro <gigantpro2000@gmail.com>"]
 license = "The GPLv3 License (GPLv3)"
-readme = "README.md"
+readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = ">=3.7"
