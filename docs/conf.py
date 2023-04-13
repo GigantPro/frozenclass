@@ -19,7 +19,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
-    "autodoc_stub_file",
 ]
 
 templates_path = ['_templates']
