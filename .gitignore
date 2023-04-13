@@ -6,3 +6,4 @@ frozenclass.egg-info
 *.save
 .pytest_cache
 test_saves
+docs/_build
