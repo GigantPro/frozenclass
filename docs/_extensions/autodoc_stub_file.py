@@ -15,7 +15,7 @@ import types
 
 
 def get_module_docstring(filepath):
-    with open(filepath) as file:
+    with open(filepath, encoding='utf-8') as file:
         source = file.read()
 
     co = compile(source, filepath, "exec")
@@ -29,9 +29,10 @@ def get_module_docstring(filepath):
 
 
 def setup(app):
-    module_name = "autodoc_stub_file.loguru"
-    dirname = os.path.dirname(os.path.abspath(__file__))
-    stub_path = os.path.join(dirname, "..", "..", "frozenclass", "__init__.py")
-    docstring = get_module_docstring(stub_path)
-    module = types.ModuleType(module_name, docstring)
-    sys.modules[module_name] = module
+    if app or not app:  # for linter
+        module_name = "autodoc_stub_file.loguru"
+        dirname = os.path.dirname(os.path.abspath(__file__))
+        stub_path = os.path.join(dirname, "..", "..", "frozenclass", "__init__.py")
+        docstring = get_module_docstring(stub_path)
+        module = types.ModuleType(module_name, docstring)
+        sys.modules[module_name] = module
