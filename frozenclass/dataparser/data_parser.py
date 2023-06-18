@@ -2,10 +2,13 @@ from typing import Any
 import json
 from copy import deepcopy
 
-from .types_modul import TypesModule
+from .types_module import (
+    get_type_by_saved_type,
+    create_class_instance,
+    generate_class_by_info,
+    get_value_by_type,
+)
 from .const import JSON_FORMATS
-
-types = TypesModule()
 
 
 class DataParser:
@@ -21,13 +24,13 @@ class DataParser:
         self._encoding_dict_keys()
         self.saved_data = self._encoding_deep_keys(self.saved_data)
 
-        self._class = types.get_type_by_saved_type(self.saved_data["type"]["class_path"])
+        self._class = get_type_by_saved_type(self.saved_data["type"]["class_path"])
 
         if self._class:
-            return types.create_class_instance(self._class, self.saved_data["var"])
+            return create_class_instance(self._class, self.saved_data["var"])
 
-        type_ = types.generate_class_by_info(self.saved_data)
-        return types.create_class_instance(type_, self.saved_data["var"])
+        type_ = generate_class_by_info(self.saved_data)
+        return create_class_instance(type_, self.saved_data["var"])
 
     def parse_saved_args(self) -> dict[str: Any]:
         self.saved_data = self.parse_file_content()
@@ -41,7 +44,7 @@ class DataParser:
 
         res = {}
         for var_desc in saved_data['var']:
-            res[var_desc['var_name']] = TypesModule().get_value_by_type(var_desc['var_value'], var_desc['var_type'])
+            res[var_desc['var_name']] = get_value_by_type(var_desc['var_value'], var_desc['var_type'])
         return res
 
     def parse_file_content(self, file_name: str | None = None) -> dict[Any]:
@@ -118,7 +121,7 @@ class DataParser:
 
             if spec_type == 'type':
                 new_key = \
-                    types.get_value_by_type(key_value, spec_value)
+                    get_value_by_type(key_value, spec_value)
         return new_key
 
     def _encoding_deep_keys(self, data: dict) -> dict:

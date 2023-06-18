@@ -4,7 +4,7 @@ from typing import Any, Callable
 from random import randint
 from datetime import datetime
 
-from .types_modul import TypesModule
+from .types_module import get_json_bases_data_by_class, get_type_by_saved_type
 from .const import (
     BAD_SAVE_PHRASES,
     JSON_FORMATS,
@@ -73,7 +73,7 @@ class DataWriter:
             save_name=self.save_name,
             saved_class=self._parse_type_by_target(self.class_)[0],
             class_path=self._parse_type_by_target(self.class_)[1],
-            class_parents=TypesModule().get_json_bases_data_by_class(self.class_),
+            class_parents=get_json_bases_data_by_class(self.class_),
         )
         for attrname in self.parsed_attributes:
             res += "\n"
@@ -204,7 +204,7 @@ class DataWriter:
                 save_name=self.save_name,
                 saved_class=self._parse_type_by_target(self.class_)[0],
                 class_path=self._parse_type_by_target(self.class_)[1],
-                class_parents=TypesModule().get_json_bases_data_by_class(self.class_),
+                class_parents=get_json_bases_data_by_class(self.class_),
             )
 
             for attrname in data:
@@ -227,8 +227,8 @@ class DataWriter:
                 save_name=f'{self.save_name}:{recursion_num}',
                 saved_class=data['var_type'],
                 class_path=data['var_type_import'],
-                class_parents=TypesModule().get_json_bases_data_by_class(TypesModule()\
-                    .get_type_by_saved_type(data["var_type_import"])),
+                class_parents=get_json_bases_data_by_class(
+                    get_type_by_saved_type(data["var_type_import"])),
             )
 
             for attrname in data['var_value']:
