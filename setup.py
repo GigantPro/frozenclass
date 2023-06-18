@@ -24,7 +24,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/GigantPro/frozenclass",
-    download_url="https://github.com/Peopl3s/club-house-api/archive/main.zip",
+    download_url="https://github.com/GigantPro/frozenclass/archive/main.zip",
     license="The GPLv3 License (GPLv3)",
     packages=["frozenclass"],
     install_requires=[],
