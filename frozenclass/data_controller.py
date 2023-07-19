@@ -69,7 +69,8 @@ class DataController:
         for save_filename in list_dir:
             parser = DataParser(f"{self._saves_path}/{save_filename}", self)
             parsed_content = parser.parse_file_content()
-            if parsed_content["SavedModel"]["save_name"].lower() == save_name.lower():
+            if parsed_content and \
+                    parsed_content["SavedModel"]["save_name"].lower() == save_name.lower():
                 return parser.parse_file()
         raise NoSave("save_name")
 
@@ -79,7 +80,8 @@ class DataController:
         for save_filename in list_dir:
             parser = DataParser(f"{self._saves_path}/{save_filename}", self)
             parsed_content = parser.parse_file_content()
-            if parsed_content["SavedModel"]["save_name"].lower() == save_name.lower():
+            if parsed_content and \
+                    parsed_content["SavedModel"]["save_name"].lower() == save_name.lower():
                 return parser.parse_saved_args()
         raise NoSave("save_name")
 
@@ -97,7 +99,8 @@ class DataController:
         for save_filename in list_dir:
             parser = DataParser(f"{self._saves_path}/{save_filename}", self)
             parsed_content = parser.parse_file_content()
-            if parsed_content["SavedModel"]["save_name"] == save_name:
+            if parsed_content and \
+                    parsed_content["SavedModel"]["save_name"] == save_name:
                 platform_ = platform.system()
                 if platform_ == 'Linux':
                     os.system(f'rm -rf "{self._saves_path}/{save_filename}"')
