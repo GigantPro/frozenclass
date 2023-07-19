@@ -5,7 +5,8 @@ from datetime import time, datetime, timedelta
 class CacheController:
     """The main class of the cache logic. Includes all caches logic"""
     def cache(*, ttl: time | None = time(minute=10)) -> Callable:  # ( TTL_end, result )
-        """Function-decorate for runtime caching. The cache can either be overwritten or remain until the program terminates.
+        """Function-decorate for runtime caching.
+The cache can either be overwritten or remain until the program terminates.
 
         :param ttl: Time-To-Live of cached valume, defaults to time(minute=10)
         :type ttl: time | None, optional
