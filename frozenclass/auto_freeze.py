@@ -1,17 +1,17 @@
-from typing import Any
+from typing import Any, Callable
 
 from .data_controller import DataController
 from .exceptions import NoSave
 
 
-def AutoFreeze(saves_path: str = 'saves', mode: str = 'freeze'):
+def AutoFreeze(saves_path: str = 'saves', mode: str = 'freeze') -> Callable:
     """Automatically saves changes to variables made to the class
 
     Args:
         saves_path (str, optional): Path to save folder. Defaults to 'saves'.
         mode (str, optional): Save mode (as in DataController): 'freeze' or 'deep_freeze'. Defaults to 'freeze'.
     """
-    def wrapper_func(target_class: Any):
+    def wrapper_func(target_class: Any) -> Any:
         if '__name__' not in target_class.__dict__:
             raise AttributeError('Your class must contain a variable called __name__')
 

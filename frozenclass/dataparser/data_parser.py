@@ -47,10 +47,13 @@ class DataParser:
             res[var_desc['var_name']] = get_value_by_type(var_desc['var_value'], var_desc['var_type'])
         return res
 
-    def parse_file_content(self, file_name: str | None = None) -> dict[Any]:
+    def parse_file_content(self, file_name: str | None = None) -> dict[Any] | None:
         file_name = file_name if file_name else self.filename
         with open(file_name, "r", encoding="utf-8") as file:
-            file_content = file.readlines()
+            try:
+                file_content = file.readlines()
+            except UnicodeDecodeError:
+                return None
         file_content = [x.strip() for x in file_content if x.strip() != ""]
 
         saved_data = {}
