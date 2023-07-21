@@ -12,7 +12,7 @@ from setuptools import setup
 with open("pyproject.toml", encoding="utf-8") as file:
     VERSION = file.read().split("=")[2].split('"')[1]
 
-with open("README.rst", encoding="utf-8") as f:
+with open("frozenclass/README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
