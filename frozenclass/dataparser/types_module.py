@@ -1,6 +1,6 @@
 import inspect
 import json
-from typing import Any, Callable, Union
+from typing import Any, Callable, Union, Dict
 
 from ..exceptions import NoVar
 from .const import STANDART_TYPES
@@ -29,7 +29,7 @@ def get_type_by_saved_type(type_data: str) -> Union[Any, None]:
     return mod
 
 def create_class_instance(
-    class_: Callable, vars: dict[str, Any]
+    class_: Callable, vars: Dict[str, Any]
 ) -> Any:
     def _get_var_with_type(var_description: dict) -> tuple[str, Any]:
         type_ = get_type_by_saved_type(var_description["class_path"])
