@@ -1,6 +1,6 @@
 from copy import deepcopy
 import json
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Optional, Tuple
 from random import randint
 from datetime import datetime
 
@@ -64,7 +64,7 @@ class DataWriter:
             }
         return res
 
-    def _parse_type_by_target(self, target_: Any) -> tuple[str, str]:
+    def _parse_type_by_target(self, target_: Any) -> Tuple[str]:
         str_type = str(type(target_))
         return str_type.split("'")[-2].split(".")[-1], str_type.split("'")[-2]
 
