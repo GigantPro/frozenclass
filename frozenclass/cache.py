@@ -1,10 +1,10 @@
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 from datetime import time, datetime, timedelta
 
 
 class CacheController:
     """The main class of the cache logic. Includes all caches logic"""
-    def cache(*, ttl: time | None = time(minute=10)) -> Callable:  # ( TTL_end, result )
+    def cache(*, ttl: Optional[time] = time(minute=10)) -> Callable:  # ( TTL_end, result )
         """Function-decorate for runtime caching.
 The cache can either be overwritten or remain until the program terminates.
 

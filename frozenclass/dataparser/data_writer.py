@@ -1,6 +1,6 @@
 from copy import deepcopy
 import json
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 from random import randint
 from datetime import datetime
 
@@ -16,7 +16,7 @@ from .const import (
 
 
 class DataWriter:
-    def __init__(self, saves_path: str, save_name: str | None = None) -> None:
+    def __init__(self, saves_path: str, save_name: Optional[str] = None) -> None:
         self.save_name = save_name
         self.saves_path = saves_path
 

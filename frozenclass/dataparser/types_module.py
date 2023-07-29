@@ -1,6 +1,6 @@
 import inspect
 import json
-from typing import Any, Callable
+from typing import Any, Callable, Union
 
 from ..exceptions import NoVar
 from .const import STANDART_TYPES
@@ -15,7 +15,7 @@ def get_value_by_type(value: Any, type_: str) -> Any:
             return class_obj(value)
     return value
 
-def get_type_by_saved_type(type_data: str) -> Any | None:
+def get_type_by_saved_type(type_data: str) -> Union[Any, None]:
     components = type_data.split(".")
     if components[0] in STANDART_TYPES:
         return STANDART_TYPES[components[0]]
