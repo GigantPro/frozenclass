@@ -29,7 +29,7 @@ setup(
     packages=[
         'frozenclass',
         'frozenclass.dataparser',
-        'frozenclassyoutube_dl.exceptions',
+        'frozenclass.exceptions',
         'frozenclass.functions'
     ],
     install_requires=[],
