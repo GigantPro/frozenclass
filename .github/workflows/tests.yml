@@ -35,13 +35,13 @@ jobs:
       run: pip install poetry
 
     - name: Install dependencies
-      run: python -m poetry install --with dev && python -m poetry shell
+      run: python -m poetry install --with dev
 
     - name: Build
-      run: python setup.py develop
+      run: python -m poetry run python setup.py develop
 
     - name: CD tests
       run: cd tests
 
     - name: Run tests
-      run: python -m pytest
+      run: python -m poetry run python -m pytest
