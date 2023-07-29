@@ -47,7 +47,7 @@ class DataParser:
             res[var_desc['var_name']] = get_value_by_type(var_desc['var_value'], var_desc['var_type'])
         return res
 
-    def parse_file_content(self, file_name: Optional[str] = None) -> Union[Dict[Any], None]:
+    def parse_file_content(self, file_name: Optional[str] = None) -> Union[Dict, None]:
         file_name = file_name if file_name else self.filename
         with open(file_name, "r", encoding="utf-8") as file:
             try:
