@@ -42,8 +42,5 @@ jobs:
     - name: Build
       run: python -m poetry run python setup.py develop
 
-    - name: CD tests
-      run: cd tests
-
     - name: Run tests
-      run: python -m poetry run python -m pytest
+      run: cd tests && python -m poetry run python -m pytest
