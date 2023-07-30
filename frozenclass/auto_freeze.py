@@ -49,7 +49,7 @@ def AutoFreeze(saves_path: str = 'saves', mode: str = 'freeze') -> Callable:
             except NoSave:
                 self.__freeze_class()
             else:
-                print(saved_vars)
+                # print(saved_vars)
                 for saved_var in saved_vars:
                     self.__setattr__(saved_var, saved_vars[saved_var])
 
