@@ -7,3 +7,4 @@ frozenclass.egg-info
 .pytest_cache
 test_saves
 docs/_build
+venv

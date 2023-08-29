@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 import os
 from shutil import copyfile
 import platform
@@ -20,7 +20,7 @@ class DataController:
 
         os.makedirs(self._saves_path, exist_ok=True)
 
-    def get_all_saves(self) -> list[Any]:
+    def get_all_saves(self) -> List[Any]:
         """Will return you instances of all previously saved classes.
 
         Returns:
