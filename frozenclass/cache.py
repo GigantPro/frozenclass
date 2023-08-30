@@ -11,6 +11,8 @@ The cache can either be overwritten or remain until the program terminates.
 
         :param ttl: Time-To-Live of cached valume, defaults to time(minute=10)
         :type ttl: time | None, optional
+        :param is_async: Set True if decorated func is async, defaults to False
+        :type is_async: bool, optional
         :return: Decorated func
         :rtype: Callable
         """
@@ -37,7 +39,7 @@ The cache can either be overwritten or remain until the program terminates.
                     result = target_func(*args, **kwargs)
                     __cached_vals[(*args, *kwargs)] = result
                     return result
-            
+
 
             async def async_cached_func_with_time(*args, **kwargs) -> Any:
                 cached_ = __cached_vals.get((*args, *kwargs), None)
@@ -63,8 +65,6 @@ The cache can either be overwritten or remain until the program terminates.
 
             if not is_async:
                 return cached_func_with_time if ttl else cached_func_without_time
-
-            else:
-                return async_cached_func_with_time if ttl else async_cached_func_without_time
+            return async_cached_func_with_time if ttl else async_cached_func_without_time
 
         return wrapper_func

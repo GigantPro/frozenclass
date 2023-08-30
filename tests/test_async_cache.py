@@ -1,7 +1,5 @@
-import sqlite3
 from datetime import time
-from time import sleep, time as t_time
-from timeit import timeit
+from time import sleep
 import pytest
 
 from frozenclass import CacheController
