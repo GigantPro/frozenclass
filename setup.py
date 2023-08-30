@@ -26,7 +26,12 @@ setup(
     url="https://github.com/GigantPro/frozenclass",
     download_url="https://github.com/GigantPro/frozenclass/archive/main.zip",
     license="The GPLv3 License (GPLv3)",
-    packages=["frozenclass"],
+    packages=[
+        'frozenclass',
+        'frozenclass.dataparser',
+        'frozenclass.exceptions',
+        'frozenclass.functions'
+    ],
     install_requires=[],
     classifiers=[
         "Operating System :: OS Independent",

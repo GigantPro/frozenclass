@@ -1,6 +1,6 @@
 import inspect
 import json
-from typing import Any, Callable
+from typing import Any, Callable, Union, Dict, Tuple
 
 from ..exceptions import NoVar
 from .const import STANDART_TYPES
@@ -15,7 +15,7 @@ def get_value_by_type(value: Any, type_: str) -> Any:
             return class_obj(value)
     return value
 
-def get_type_by_saved_type(type_data: str) -> Any | None:
+def get_type_by_saved_type(type_data: str) -> Union[Any, None]:
     components = type_data.split(".")
     if components[0] in STANDART_TYPES:
         return STANDART_TYPES[components[0]]
@@ -29,9 +29,9 @@ def get_type_by_saved_type(type_data: str) -> Any | None:
     return mod
 
 def create_class_instance(
-    class_: Callable, vars: dict[str:Any]
+    class_: Callable, vars: Dict[str, Any]
 ) -> Any:
-    def _get_var_with_type(var_description: dict) -> tuple[str, Any]:
+    def _get_var_with_type(var_description: dict) -> Tuple[str, Any]:
         type_ = get_type_by_saved_type(var_description["class_path"])
         value = type_(var_description["var_value"])
 
@@ -89,7 +89,7 @@ def get_json_bases_data_by_class(class_: Callable) -> str:
     bases_list = s_bases.split('\'')[1::2]
     return json.dumps(bases_list)
 
-def get_parents_by_json(json_: list) -> tuple[Callable]:
+def get_parents_by_json(json_: list) -> Tuple[Callable]:
     parents_list_str = json.loads(json_['type']['class_parents'])
     parents_list = [get_type_by_saved_type(parent) for parent in parents_list_str]
     for i in range(len(parents_list)):
